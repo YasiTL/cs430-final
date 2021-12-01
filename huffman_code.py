@@ -74,10 +74,8 @@ def printTree(root, t):
         print(root,":" ,t)
     #left then add "0" to the code, right then add "1" to the code.
     #recursive calls for left and right sub-tree of the generated tree.
-    printTree(current_node.left, t)
-    print(0)
-    printTree(current_node.right, t)
-    print(1)
+    printTree(current_node.left, t + "0")
+    printTree(current_node.right, t+ "1")
 
 # Do all the work to encode a file, based on the project specifications.
 # This code also prints to the command line and makes an encoded output file as per directions.
