@@ -66,6 +66,19 @@ def createCodeDict(node, val='', code_dict={}):
     
     return code_dict
 
+#this code will print out the encoded tree
+def printTree(root, t):
+    current_node = root
+    if (current_node.left is None and current_node.right is None):
+        # c is the character in the node
+        print(root,":" ,t)
+    #left then add "0" to the code, right then add "1" to the code.
+    #recursive calls for left and right sub-tree of the generated tree.
+    printTree(current_node.left, t)
+    print(0)
+    printTree(current_node.right, t)
+    print(1)
+
 # Do all the work to encode a file, based on the project specifications.
 # This code also prints to the command line and makes an encoded output file as per directions.
 def encoding(file_path):
@@ -82,18 +95,21 @@ def encoding(file_path):
     code_dict = createCodeDict(root_node)
 
     # Print the letters and their codes to the screen as per instructions
-    print(code_dict)
+    #print(code_dict)
+    for key in code_dict.items():
+        print(key)
 
     encoded_string = ''
     for c in stripped_input:
         encoded_string += code_dict[c]
+    
     f = open("encoded_output.txt","w+")
     f.write(encoded_string)
     
     return root_node
 
 # Opens up the encoded_output.txt file and 
-def decoding(root_node):
+def decoding(input,root_node):
     f = open("encoded_output.txt", "r")
     file_contents = f.read()
 
@@ -113,17 +129,23 @@ def decoding(root_node):
     f = open("decoded_output.txt","w+")
     f.write(decoded_string)
 
+
 # DRIVER CODE
 print("~ * ~ * CS 430 FINAL PROJECT * ~ * ~ ")
 fpath = str(input("Please enter the realitive path to the file you would like to encode: "))
 if os.path.isfile(fpath):
     root_node = encoding(fpath)
     # Either need to print tree HERE or within the encoding function.
+    tree=""
 
+    print("below is the tree:")
+    printTree(root_node, tree)
+
+    print("The result of your decoding is in: \"decoded_output.txt\" ")
     user_answer = input("Would you like to decode the file you just encoded? (Y/N): ")
     if user_answer.lower() == 'y':
         decoding(input, root_node)
-        print("The result of your decoding is in: \"decoded_output.txt\" ")
+        
     elif user_answer.lower() == 'n':
         print("Thanks. Bye!")
         exit()
