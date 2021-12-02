@@ -145,6 +145,8 @@ if os.path.isfile(fpath):
 
     print("Below is the binary tree representation (horizontally):")
     printTree(root_node,0)
+    for i in range(10):
+        print(" ")
 
     print("The result of your encoding is in: \"encoded_output.txt\" ")
     user_answer = input("Would you like to decode the file you just encoded? (Y/N): ")
