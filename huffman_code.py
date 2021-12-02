@@ -65,24 +65,26 @@ def createCodeDict(node, val='', code_dict={}):
     
     return code_dict
 
-#this code will print out the encoded tree
-def printTree(root, t):
-    current_node = root
-    if (current_node.left is None and current_node.right is None):
-        # c is the character in the node
-        #print(current_node.character,":" ,t)
-        for num in t:
-            print(num+"\n|")
-        print(current_node.character)
-    
-    #left then add "0" to the code, right then add "1" to the code.
-    #recursive calls for left and right sub-tree of the generated tree.
-    if current_node.left is not None:
-        printTree(current_node.left, t + "0")
-    if current_node.right is not None:
-        printTree(current_node.right, t + "1")
+#initialize count to the default number of spaces (10)
+COUNT =[10]
 
-# Do all the work to encode a file, based on the project specifications.
+#this code will print out the encoded tree
+def printTree(root, space) :
+    #no tree, skips
+    if (root == None) :
+        return
+    # adds distance by a fixed amount between each level
+    space += COUNT[0]
+    # starts with right child first, prints it first
+    printTree(root.right, space)
+    # Print current node after proper number of spaces
+    print()
+    for j in range(COUNT[0], space):
+        print(end = " ")
+    print(root.character + ":" + str(root.frequency))
+    # Process left child last and prints it last 
+    printTree(root.left, space)
+
 # This code also prints to the command line and makes an encoded output file as per directions.
 def encoding(file_path):
     f = open(file_path, "r")
@@ -139,10 +141,11 @@ fpath = str(input("Please enter the realitive path to the file you would like to
 if os.path.isfile(fpath):
     root_node = encoding(fpath)
     # Either need to print tree HERE or within the encoding function.
-    tree=""
+    #printingTree(root_node,0)
 
-    print("below is the tree:")
-    printTree(root_node, tree)
+
+    print("below is the tree (horizontally):")
+    printTree(root_node,0)
 
     print("The result of your decoding is in: \"decoded_output.txt\" ")
     user_answer = input("Would you like to decode the file you just encoded? (Y/N): ")
