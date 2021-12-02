@@ -71,11 +71,13 @@ def printTree(root, t):
     current_node = root
     if (current_node.left is None and current_node.right is None):
         # c is the character in the node
-        print(root,":" ,t)
+        print(current_node.character,":" ,t)
     #left then add "0" to the code, right then add "1" to the code.
     #recursive calls for left and right sub-tree of the generated tree.
-    printTree(current_node.left, t + "0")
-    printTree(current_node.right, t+ "1")
+    if current_node.left is not None:
+        printTree(current_node.left, t + "0")
+    if current_node.right is not None:
+        printTree(current_node.right, t + "1")
 
 # Do all the work to encode a file, based on the project specifications.
 # This code also prints to the command line and makes an encoded output file as per directions.
