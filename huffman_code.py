@@ -143,14 +143,14 @@ if os.path.isfile(fpath):
     # Either need to print tree HERE or within the encoding function.
     #printingTree(root_node,0)
 
-
-    print("below is the tree (horizontally):")
+    print("Below is the binary tree representation (horizontally):")
     printTree(root_node,0)
 
-    print("The result of your decoding is in: \"decoded_output.txt\" ")
+    print("The result of your encoding is in: \"encoded_output.txt\" ")
     user_answer = input("Would you like to decode the file you just encoded? (Y/N): ")
     if user_answer.lower() == 'y':
         decoding(input, root_node)
+        print("The result of your decoding is in: \"decoded_output.txt\" ")
         
     elif user_answer.lower() == 'n':
         print("Thanks. Bye!")
