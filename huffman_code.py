@@ -51,7 +51,6 @@ def createHufman(freq_dict):
     
     return nodes[0]
 
-# 
 def createCodeDict(node, val='', code_dict={}):
     # The Huffman code for current node
     huffman_val = val + str(node.huff)
@@ -71,7 +70,11 @@ def printTree(root, t):
     current_node = root
     if (current_node.left is None and current_node.right is None):
         # c is the character in the node
-        print(current_node.character,":" ,t)
+        #print(current_node.character,":" ,t)
+        for num in t:
+            print(num+"\n|")
+        print(current_node.character)
+    
     #left then add "0" to the code, right then add "1" to the code.
     #recursive calls for left and right sub-tree of the generated tree.
     if current_node.left is not None:
