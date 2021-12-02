@@ -143,9 +143,10 @@ if os.path.isfile(fpath):
     # Either need to print tree HERE or within the encoding function.
     #printingTree(root_node,0)
 
-
     print("below is the tree (horizontally):")
     printTree(root_node,0)
+    for i in range(10):
+        print(" ")
 
     print("The result of your decoding is in: \"decoded_output.txt\" ")
     user_answer = input("Would you like to decode the file you just encoded? (Y/N): ")
